@@ -31,6 +31,7 @@ knitr::opts_chunk$set(include = TRUE, comment = NA, echo = TRUE,
                       fig.align = "center", out.width = '90%')
 library(here)
 library(knitr)
+library(learnr)
 ```
 
 #### {.outline }
@@ -1128,6 +1129,18 @@ Using only data from the US, calculate the first and last year that a value was 
 ```{r, echo = FALSE, eval = FALSE}
 save(data_long, file = here::here("data", "wrangled_data.rda"))
 readr::write_csv(data_long, path = here::here("data", "wrangled_data.csv"))
+```
+
+## Exercise
+``` {r DataWrangling1, echo = FALSE}
+question("Which one of the following functions in the `dplyr` package allows us to see all of the variables (columns) at once, where several values of those columns are shown on the right of the variable names?",
+  answer("`slice_head()`", message = "This function allows us to see just the first rows of the data."),
+  answer("`slice_sample()`", message = "This function allows us to see a selection of random rows of the data."),
+  answer("`slice_tail()`", message = "This function allows us to see the rows at the end of the data."),
+  answer("`glimpse()`", correct = TRUE),
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
 ```
 
 # **Data Visualization**
