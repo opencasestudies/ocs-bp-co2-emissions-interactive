@@ -1,0 +1,32 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(here)
+library(tidyverse)
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r DV_Question1-setup}
+data_long <- readr::read_csv(here("data","wrangled_data.csv"), col_types = "cdccdc")
+my_theme <-
+  theme_linedraw() +
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+       axis.title.x = element_text(size = 12),
+       axis.title.y = element_text(size = 12),
+       plot.caption = element_text(size = 12),
+         plot.title = element_text(size = 16))
+```
+
+```{r DV_Question1, exercise=TRUE}
+# Try this out!
+```
+<div data-iframe-height></div>

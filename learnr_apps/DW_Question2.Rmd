@@ -1,0 +1,32 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(here)
+library(tidyverse)
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r DW_Question2-setup}
+CO2_emissions <- readxl::read_xlsx(here("data", "yearly_co2_emissions_1000_tonnes.xlsx"))
+CO2_emissions %<>%
+  pivot_longer(cols = -country,
+               names_to = "Year",
+               values_to = "Emissions")
+```
+
+```{r DW_Question2, exercise=TRUE}
+# Write some code to check this
+```
+
+```{r DW_Question2-hint}
+dim(CO2_emissions)
+```
+<div data-iframe-height></div>

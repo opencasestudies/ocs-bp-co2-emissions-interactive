@@ -1,0 +1,58 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(here)
+library(tidyverse)
+library(magrittr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r DV_Question2-setup}
+data_long <- readr::read_csv(here("data","wrangled_data.csv"), col_types = "cdccdc")
+```
+
+```{r DV_Question2, exercise=TRUE}
+# Write some code to find out
+```
+
+```{r DV_Question2-hint-1}
+# 1st way: rank in descending order as we did before 
+# 2nd way: rank in ascending order
+```
+
+```{r DV_Question2-hint-2}
+bottom_10_count <-
+  data_long %>%
+  filter(Indicator == "Emissions", Year == 2014)
+```
+
+```{r DV_Question2-hint-3}
+# 1st way of doing this
+bottom_10_count <-
+  data_long %>%
+  filter(Indicator == "Emissions", Year == 2014) %>%
+  mutate(rank = dense_rank(desc(Value))) %>%
+  filter(rank >= max(rank) - 9) %>%
+  arrange(rank)
+bottom_10_count
+```
+
+```{r DV_Question2-hint-4}
+# 2nd way of doing this
+bottom_10_count <-
+  data_long %>%
+  filter(Indicator == "Emissions", Year == 2014) %>%
+  mutate(rank = dense_rank(Value)) %>%
+  filter(rank <= 10) %>%
+  arrange(rank)
+bottom_10_count
+# Can you think of other ways? Try them out!
+```
+<div data-iframe-height></div>

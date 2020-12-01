@@ -1,0 +1,29 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(here)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r DW_Question1-setup}
+CO2_emissions <- readxl::read_xlsx(here("data", "yearly_co2_emissions_1000_tonnes.xlsx"))
+```
+
+```{r DW_Question1, exercise=TRUE}
+set.seed()
+```
+
+```{r DW_Question1-solution}
+set.seed(100)
+CO2_emissions %>%
+  slice_sample(n = 3)
+```
+<div data-iframe-height></div>

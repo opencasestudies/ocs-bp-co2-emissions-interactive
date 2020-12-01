@@ -1,0 +1,52 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, DV_Exercise1-setup}
+#Suppose that we have a dataset called `weight`. Write some code to plot weight change by individual.\
+#We want the plot to:
+
+#* have title as "Weight Change"
+#* have $x$ axis as "Time_day" and $y$ axis be "Weight_lb"
+#* be a line plot
+#* have different colors representing IDs 1, 2, and 3
+#* have legend on the right of the plot
+
+#*Note: first we need to use `as.character()` to convert "ID" from number to character.*
+weight <- data.frame("ID" = c(1, 1, 1, 2, 2, 2, 3, 3, 3),
+                     "Time_day" = c(0, 15, 30, 0, 15, 30, 0, 15, 30),
+                     "Weight_lb" = c(120, 128, 122, 172, 176, 180, 155, 154, 155))
+```
+
+```{r DV_Exercise1, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 5}
+weight
+```
+
+```{r DV_Exercise1-hint-1}
+weight$ID <- as.character(weight$ID)
+```
+
+```{r DV_Exercise1-hint-2}
+weight$ID <- as.character(weight$ID)
+weight %>%
+  ggplot(aes())
+```
+
+```{r DV_Exercise1-solution}
+weight$ID <- as.character(weight$ID)
+weight %>%
+  ggplot(aes(x = Time_day, y = Weight_lb, color = ID)) +
+  geom_line() +
+  labs(title = "Weight Change")
+```
+<div data-iframe-height></div>

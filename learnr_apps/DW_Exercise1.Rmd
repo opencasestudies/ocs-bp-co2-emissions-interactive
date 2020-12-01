@@ -1,0 +1,35 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r DW_Exercise1-setup}
+ID <- c(1, 2, 3)
+Year <- c(2015, 2018, 2019)
+Length <- c(20, 21.5, 19)
+wide_format <- data.frame(ID, Year, Length)
+```
+
+```{r DW_Exercise1, exercise=TRUE, exercise.eval=TRUE, exercise.lines = 5}
+wide_format
+```
+
+```{r DW_Exercise1-hint}
+wide_format %>%
+  pivot_longer()
+```
+
+```{r DW_Exercise1-solution}
+wide_format %>%
+  pivot_longer(cols = -ID, names_to = "Variable", values_to = "Value")
+```
+<div data-iframe-height></div>

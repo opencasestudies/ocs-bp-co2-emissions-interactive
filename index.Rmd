@@ -3,6 +3,8 @@ title: "Open Case Studies: Exploring CO2 emissions across time"
 css: style.css
 output:
   html_document:
+    includes:
+      in_header: header.html
     self_contained: yes
     code_download: yes
     highlight: tango
@@ -31,7 +33,6 @@ knitr::opts_chunk$set(include = TRUE, comment = NA, echo = TRUE,
                       fig.align = "center", out.width = '90%')
 library(here)
 library(knitr)
-library(learnr)
 ```
 
 #### {.outline }
@@ -422,6 +423,12 @@ CO2_emissions %>%
 Try setting a different seed to see the difference in the output.
 
 ####
+
+<!---DW_Question1-->
+
+<iframe style="margin:0 auto; min-width: 100%;" id="DW_Q1Iframe" class="interactive" src="https://kenzie9.shinyapps.io/DW_Question1" scrolling="no" frameborder="no"></iframe>
+
+<!---------------->
 
 OK, we see each country is represented along one row and each column contains yearly CO2 emissions. 
 We also see that there are a lot of `NA` values.
@@ -1131,17 +1138,19 @@ save(data_long, file = here::here("data", "wrangled_data.rda"))
 readr::write_csv(data_long, path = here::here("data", "wrangled_data.csv"))
 ```
 
-## Exercise
-``` {r DataWrangling1, echo = FALSE}
-question("Which one of the following functions in the `dplyr` package allows us to see all of the variables (columns) at once, where several values of those columns are shown on the right of the variable names?",
-  answer("`slice_head()`", message = "This function allows us to see just the first rows of the data."),
-  answer("`slice_sample()`", message = "This function allows us to see a selection of random rows of the data."),
-  answer("`slice_tail()`", message = "This function allows us to see the rows at the end of the data."),
-  answer("`glimpse()`", correct = TRUE),
-  allow_retry = TRUE,
-  random_answer_order = TRUE
-)
-```
+<!---DW_Quiz-->
+
+<iframe style="margin:0 auto; min-width: 100%;" id="DW_QuizIframe" class="interactive" src="https://kenzie9.shinyapps.io/DW_quiz" scrolling="no" frameborder="no"></iframe>
+
+<!---------------->
+
+
+We have created a dataset called `wide_format` that is in "wide" format. Write some code to convert it to "long" format. (We want 3 columns with names "ID", "Variable", and "Value".)
+<!---DW_Exercise1-->
+
+<iframe style="margin:0 auto; min-width: 100%;" id="DW_Ex1Iframe" class="interactive" src="https://kenzie9.shinyapps.io/DW_Exercise1" scrolling="no" frameborder="no"></iframe>
+
+<!---------------->
 
 # **Data Visualization**
 *** 
@@ -2281,3 +2290,7 @@ sessionInfo()
 We would like to acknowledge [Megan Latshaw](https://www.jhsph.edu/faculty/directory/profile/1708/megan-weil-latshaw) for assisting in framing the major direction of the case study.
 
 We would also like to acknowledge the [Bloomberg American Health Initiative](https://americanhealth.jhu.edu/) for funding this work. 
+
+<script>
+  iFrameResize({}, ".interactive");
+</script>

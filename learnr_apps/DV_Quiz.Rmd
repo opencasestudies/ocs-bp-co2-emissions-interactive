@@ -1,0 +1,42 @@
+---
+output: 
+  html_document:
+    includes:
+      in_header: TheHTML.html
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+``` {r DV_Quiz, echo = FALSE}
+quiz(caption = "Exercise",
+  question("Which one of the following terms in the `ggplot()` function is used to define the shape, transparency, color, fill, and line types of the plot?",
+    answer("geom", message = "Geoms define geometric objects."),
+    answer("scale", message = "Scales define how your data will be plotted. For example, continuous, discrete, etc."),
+    answer("labs", message = "`labs()` function defines title, caption, and the axis labels."),
+    answer("aes", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("What does the `filter()` function do?",
+    answer("Selects specified columns.", message = "This is the function of `select()`."),
+    answer("Groups the data by a variable.", message = "This is the function of `group_by()`."),
+    answer("Reorders rows of data by a specified variable.", message = "This is the function of `arrange()`"),
+    answer("Extracts all rows that satisfy a condition.", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Inside the `facet_grid()` function, `A ~ B` tells you to facet by A (columns) and B (rows).",
+    answer("True", message = "Variable on the left side of `~` tells you to facet by rows. Variable on the right side tells you to facet by columns."),
+    answer("False", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  )
+)
+```
+
+<div data-iframe-height></div>
+
