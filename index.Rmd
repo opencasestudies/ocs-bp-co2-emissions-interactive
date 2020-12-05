@@ -20,7 +20,7 @@ output:
 
 <style>
 #TOC {
-  background: url("https://opencasestudies.github.io/img/logo.jpg");
+  background: url("https://opencasestudies.github.io/img/icon-bahi.png");
   background-size: contain;
   padding-top: 240px !important;
   background-repeat: no-repeat;
@@ -42,20 +42,25 @@ knitr::include_graphics(here::here("img", "mainplot.png"))
 
 ####
 
-## {.disclaimer_block}
+#### {.disclaimer_block}
 
 **Disclaimer**: The purpose of the [Open Case Studies](https://opencasestudies.github.io){target="_blank"} project is **to demonstrate the use of various data science methods, tools, and software in the context of messy, real-world data**. A given case study does not cover all aspects of the research process, is not claiming to be the most appropriate way to analyze a given dataset, and should not be used in the context of making policy decisions without external consultation from scientific experts. 
 
-## {.license_block}
+####
+
+#### {.license_block}
 
 This work is licensed under the Creative Commons Attribution-NonCommercial 3.0 [(CC BY-NC 3.0)](https://creativecommons.org/licenses/by-nc/3.0/us/){target="_blank"}  United States License.
 
+####
 
-## {.reference_block}
+#### {.reference_block}
 
 To cite this case study please use:
 
-Wright, Carrie, and Ontiveros, Michael and Jager, Leah and Taub, Margaret and Hicks, Stephanie. (2020). https://github.com/opencasestudies/ocs-bp-co2-emissions. Exploring CO2 emissions across time (Version v1.0.0).
+Wright, Carrie and Ontiveros, Michael and Jager, Leah and Taub, Margaret and Hicks, Stephanie. (2020). https://github.com/opencasestudies/ocs-bp-co2-emissions. Exploring CO2 emissions across time (Version v1.0.0).
+
+####
 
 # **Motivation**
 *** 
@@ -151,7 +156,7 @@ While some students may be familiar with previous R programming packages, these 
 
 The skills, methods, and concepts that students will be familiar with by the end of this case study are:
 
-Data science skills:
+<u>**Data Science Learning Objectives:**</u> 
 
 1. Importing data from various types of Excel files and CSV files
 2. Apply action verbs in `dplyr` for data wrangling
@@ -161,7 +166,7 @@ Data science skills:
 6. How to add text, color, and labels to `ggplot2` plots
 7. How to create faceted `ggplot2` plots
 
-Statistical concepts and methods:
+<u>**Statistical Learning Objectives:**</u>
 
 1. Introduction to correlation coefficient as a summary statistic
 2. Relationship between correlation and linear regression
@@ -394,7 +399,8 @@ Next, we take a look at our data that we just imported.
 We will need to do some data wrangling to allow us to evaluate how CO2 emissions have changed over time and how emissions may relate to energy use, GDP, etc.
 Let's explore how to do that with useful functions and packages from the `tidyverse`. 
 
-## Yearly CO~2~ Emissions
+## **Yearly CO~2~ Emissions**
+***
 
 First, let's take a look at the CO2 data (`CO2_emissions`). 
 We can use the `slice_head()` function of the `dplyr` package to see just the first rows of our data. 
@@ -550,7 +556,8 @@ CO2_emissions %>%
 These all look as expected!
 
 
-## Yearly Growth in GDP per Capita
+## **Yearly Growth in GDP per Capita**
+***
 
 Let's take a look at the next dataset (`gdp_growth`) that we imported. 
 
@@ -637,7 +644,8 @@ gdp_growth %>%
 
 Also looks good!
 
-## Energy Use per Person
+## **Energy Use per Person**
+***
 
 Now let's take a look at the energy use per person data (`energy_use`) using `slice_head()` and `glimpse()`. 
 
@@ -711,11 +719,13 @@ energy_use %>%
 
 Looks good!
 
-## US Specific Data
+## **US Specific Data**
+***
 
 Now we will take a look at the US data about disasters and temperature.
 
-### Disasters
+### **Disasters**
+***
 
 First, we consider the disasters that have occurred in the US. 
 ```{r}
@@ -795,7 +805,8 @@ What would happen if we did not exclude `Year`?
 
 ####
 
-### Temperature
+### **Temperature**
+***
 
 Next, we consider the temperature in the US over time.  
 ```{r}
@@ -869,7 +880,8 @@ us_temperature %>%
 ```
 
 
-## Joining data
+## **Joining data**
+***
 
 Now that we have wrangled the individual datasets, we are ready to put everything together. 
 Specifically, we will _join_ the individual datasets into one tibble using `*_join()` functions available in the `dplyr` package. 
@@ -1166,7 +1178,8 @@ These functions are great because they come with a basic installation of R and c
 
 We are choosing to introduce `ggplot2` because, in our opinion, it is one of the simplest ways for beginners to create relatively complicated plots that are intuitive and aesthetically pleasing. 
 
-## The `ggplot2` R package
+## **The `ggplot2` R package**
+***
 
 The reasons [`ggplot2`](http://ggplot2.tidyverse.org) is generally intuitive for beginners is the use of [grammar of graphics](http://vita.had.co.nz/papers/layered-grammar.html) or the `gg` in `ggplot2`. 
 The idea is that you can construct many sentences by learning just a few nouns, adjectives, and verbs. 
@@ -1203,7 +1216,7 @@ Anything that goes in the `ggplot()` object becomes a global setting.
 From there, we use the `geom` objects to add more layers to the base `ggplot()` object. 
 These will define what we are interested in illustrating using the data.  
 
-## CO2 Emissions
+## **CO2 Emissions**
 
 Let's start by plotting the CO2 emissions over time. 
 Because our dataset contains other variables, we first need to filter our data to only include the CO2 emissions data by using the `filter()` function of the `dplyr` package. 
@@ -1689,7 +1702,8 @@ Think about what the pros and cons are of tile and line plots. In what situation
 
 ####
 
-## More than one variable
+## **More than one variable**
+***
 
 Now, we will visualize all the variables in our dataset.
 
@@ -1965,7 +1979,8 @@ CO2_temp_US <-
 In this section, we are going to introduce some ways to better understand how two variables move together. 
 We will focus on the CO2 emissions and temperature, but you will be encouraged to explore the relationship between CO2 emissions and the other variables. 
 
-### Basic summary statistics
+### **Basic summary statistics**
+***
 
 We can always calculate the sample mean and variance for two variables. 
 
@@ -1979,7 +1994,8 @@ These are useful, but on their own they do not summarize whether or not there is
 What else could we use? 
 Next, we are going to learn about the correlation coefficient, which is a summary statistic that describes how two variables are related or move together. 
 
-### Correlation coefficient
+### **Correlation coefficient**
+***
 
 We can use the [correlation coefficient](https://rafalab.github.io/dsbook/regression.html#corr-coefl){target="_blank"}. 
 Here, we are using this summary statistic to measure the strength of a _linear_ relationship between two variables. 
@@ -2093,7 +2109,8 @@ broom::tidy(cor.test(pull(wide_US, Emissions),
 
 We see that the correlation coefficient quantifying the strength of the linear relationship between C02 emissions and temperature is statistically significant.
 
-### Relationship between correlation and linear regression
+### **Relationship between correlation and linear regression**
+***
 
 Let's briefly discuss the relationship between correlation and linear regression, which is further described in the [Introduction to Data Science book](https://rafalab.github.io/dsbook/regression.html). 
 
@@ -2166,7 +2183,9 @@ What does `se = FALSE` mean? Try turning it to TRUE. What happens?
 `se` stands for standard error. The gray shading shows the [confidence interval](https://stattrek.com/regression/slope-confidence-interval.aspx){target="_blank"} of the smooth line.
 </details>
 ***
-### Limitations of Correlation 
+
+### **Limitations of Correlation**
+***
 
 While correlation is useful in many settings to understand how two variables move together, correlation is not always a useful summary. 
 For example, here are ways it might not be useful: 
@@ -2197,7 +2216,7 @@ This is something to keep in mind when you evaluate how two things are related t
 # **Summary**
 *** 
 
-## Summary Plot
+## **Summary Plot**
 
 
 The last thing we will do here is to create a plot that summarizes our major findings. 
@@ -2220,7 +2239,7 @@ knitr::include_graphics(here::here("img", "mainplot.png"))
 
 
 
-## Synopsis
+## **Synopsis**
 
 In this case study we evaluated CO2 emissions from as far back as 1751 for some countries to 2014. We discovered that global levels of CO2 emissions have dramatically increased over time. We also learned that some countries have been responsible for particularly high levels. 
 
@@ -2240,7 +2259,8 @@ Ask students to plot CO2 emissions and other variables (e.g. energy use) on a sc
 # **Additional information**
 ***
 
-## Helpful Links
+## **Helpful Links**
+***
 
 [Tidyverse](https://www.tidyverse.org/){target="_blank"}  
 [RStudio cheatsheets](https://rstudio.com/resources/cheatsheets/){target="_blank"}
@@ -2279,13 +2299,15 @@ Ask students to plot CO2 emissions and other variables (e.g. energy use) on a sc
 [patchwork](https://github.com/thomasp85/patchwork){target="_blank"}  | to combine plots
 
 
-## Session Info
+## **Session Info**
+***
 
 ```{r}
 sessionInfo()
 ```
 
-## Acknowledgements
+## **Acknowledgments**
+***
 
 We would like to acknowledge [Megan Latshaw](https://www.jhsph.edu/faculty/directory/profile/1708/megan-weil-latshaw) for assisting in framing the major direction of the case study.
 

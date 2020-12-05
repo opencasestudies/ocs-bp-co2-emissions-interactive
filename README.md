@@ -29,8 +29,8 @@ United States License.
 
 To cite this case study:
 
-Wright, Carrie, and Ontiveros, Michael and Jager, Leah and Taub,
-Margaret and Hicks, Stephanie. (2020).
+Wright, Carrie and Ontiveros, Michael and Jager, Leah and Taub, Margaret
+and Hicks, Stephanie. (2020).
 <a href="https://github.com/opencasestudies/ocs-bp-co2-emissions" class="uri">https://github.com/opencasestudies/ocs-bp-co2-emissions</a>.
 Exploring CO2 emissions across time (Version v1.0.0).
 
@@ -83,7 +83,10 @@ which is an agency that collects weather and climate data.
 
 #### Learning Objectives
 
-Data science skills:
+The skills, methods, and concepts that students will be familiar with by
+the end of this case study are:
+
+<u>**Data Science Learning Objectives:**</u>
 
 1.  Importing data from various types of Excel files and CSV files
 2.  Apply action verbs in `dplyr` for data wrangling
@@ -94,7 +97,7 @@ Data science skills:
 6.  How to add text, color, and labels to `ggplot2` plots
 7.  How to create faceted `ggplot2` plots
 
-Statistical concepts and methods:
+<u>**Statistical Learning Objectives:**</u>
 
 1.  Introduction to correlation coefficient as a summary statistic
 2.  Relationship between correlation and linear regression
