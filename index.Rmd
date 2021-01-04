@@ -432,7 +432,7 @@ Try setting a different seed to see the difference in the output.
 
 <!---DW_Question1-->
 
-<iframe style="margin:0 auto; min-width: 100%;" id="DW_Q1Iframe" class="interactive" src="https://kenzie9.shinyapps.io/DW_Question1" scrolling="no" frameborder="no"></iframe>
+<iframe style="margin:0 auto; min-width: 100%;" id="DW_Q1Iframe" class="interactive" src="https://rsconnect.biostat.jhsph.edu/OCS_CO2_DW_Question1/" scrolling="no" frameborder="no"></iframe>
 
 <!---------------->
 
@@ -1160,7 +1160,7 @@ readr::write_csv(data_long, path = here::here("data", "wrangled_data.csv"))
 We have created a dataset called `wide_format` that is in "wide" format. Write some code to convert it to "long" format. (We want 3 columns with names "ID", "Variable", and "Value".)
 <!---DW_Exercise1-->
 
-<iframe style="margin:0 auto; min-width: 100%;" id="DW_Ex1Iframe" class="interactive" src="https://kenzie9.shinyapps.io/DW_Exercise1" scrolling="no" frameborder="no"></iframe>
+<iframe style="margin:0 auto; min-width: 100%;" id="DW_Ex1Iframe" class="interactive" src="https://rsconnect.biostat.jhsph.edu/OCS_CO2_DW_exercise1/" scrolling="no" frameborder="no"></iframe>
 
 <!---------------->
 

@@ -1,0 +1,13 @@
+name: ocs_co2_dv_quiz
+title: OCS_CO2_DV_Quiz
+username: cwright
+account: cwright
+server: rsconnect.biostat.jhsph.edu
+hostUrl: https://rsconnect.biostat.jhsph.edu/__api__
+appId: 47
+bundleId: 229
+url: https://rsconnect.biostat.jhsph.edu/content/47/
+when: 1609778992.02025
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: DA_Quiz.Rmd|DV_Exercise1.Rmd|DV_Question1.Rmd|DV_Question2.Rmd|DW_Exercise1.Rmd|DW_Question1.Rmd|DW_Question2.Rmd|DW_quiz.Rmd|data
