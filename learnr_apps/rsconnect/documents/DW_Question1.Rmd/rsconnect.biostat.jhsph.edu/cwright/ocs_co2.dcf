@@ -1,0 +1,12 @@
+name: ocs_co2
+title: OCS_CO2
+username: cwright
+account: cwright
+server: rsconnect.biostat.jhsph.edu
+hostUrl: https://rsconnect.biostat.jhsph.edu/__api__
+appId: 42
+bundleId: 224
+url: https://rsconnect.biostat.jhsph.edu/content/42/
+when: 1609777328.27513
+asMultiple: FALSE
+asStatic: FALSE
