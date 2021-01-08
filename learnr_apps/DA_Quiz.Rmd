@@ -15,8 +15,8 @@ knitr::opts_chunk$set(echo = FALSE)
 quiz(caption = "",
   question("Refer to the plot above, what kind of correlation is this?",
     answer("No correlation"),
-    answer("Positive correlation"),
-    answer("Negative correlation", correct = TRUE),
+    answer("Positive correlation", correct = TRUE),
+    answer("Negative correlation"),
     allow_retry = TRUE,
     random_answer_order = TRUE
   ),

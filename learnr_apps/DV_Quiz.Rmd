@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ``` {r DV_Quiz, echo = FALSE}
-quiz(caption = "Exercise",
+quiz(caption = "",
   question("Which one of the following terms in the `ggplot()` function is used to define the shape, transparency, color, fill, and line types of the plot?",
     answer("geom", message = "Geoms define geometric objects."),
     answer("scale", message = "Scales define how your data will be plotted. For example, continuous, discrete, etc."),
@@ -39,4 +39,3 @@ quiz(caption = "Exercise",
 ```
 
 <div data-iframe-height></div>
-
