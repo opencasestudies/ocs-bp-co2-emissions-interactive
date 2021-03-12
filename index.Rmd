@@ -27,6 +27,9 @@ output:
 }
 </style>
 
+<!-- Open all links in new tab-->  
+<base target="_blank"/> 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(include = TRUE, comment = NA, echo = TRUE,
                       message = FALSE, warning = FALSE, cache = FALSE,
@@ -340,14 +343,38 @@ What concerns might arise about reliability and variation of measurement practic
 
 # **Data Import**
 *** 
+In our case, we downloaded the data for the files from the various sources as indicated in the table above and put them within a "raw" subdirectory of a "data" directory for our project. If you use an RStudio project, then you can use the `here()` function of the `here` package to make the path for importing this data simpler. The `here` package automatically starts looking for files based on where you have a `.Rproj` file which is created when you start a new RStudio project. We can specify that we want to look for the "yearly_co2_emissions_1000_tonnes.xlsx" file within the "raw" directory within the "data" directory within a directory where our `.Rproj` file is located by separating the names of these directories using commas and listing "data" first. 
 
+***
+<details> <summary> Click here to see more about creating new projects in RStudio. </summary>
+
+You can create a project by going to the File menu of RStudio like so:
+
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics(here::here("img", "New_project.png"))
+```
+
+You can also do so by clicking the project button:
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics(here::here("img", "project_button.png"))
+```
+
+See [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) to learn more about using RStudio projects and [here](https://github.com/jennybc/here_here) to learn more about the `here` package.
+
+</details>
+
+***
 To read in the files that were downloaded from the various sources as indicated in the table above, we will use the `read_xlsx()` and `read_xls()` functions of the `readxl` package to import the data from the `.xlsx` and `.xls` files, respectively. We will also use the `here()` function of the `here` package to more easily specify the path to our files relative to the directory where the .Rproj file is located. 
 
 ```{r}
-CO2_emissions <- readxl::read_xlsx(here("data", "yearly_co2_emissions_1000_tonnes.xlsx"))
-gdp_growth    <- readxl::read_xlsx(here("data", "gdp_per_capita_yearly_growth.xlsx"))
-energy_use    <- readxl::read_xlsx(here("data", "energy_use_per_person.xlsx"))
+CO2_emissions <- readxl::read_xlsx(here("data","raw", "yearly_co2_emissions_1000_tonnes.xlsx"))
+gdp_growth    <- readxl::read_xlsx(here("data", "raw", "gdp_per_capita_yearly_growth.xlsx"))
+energy_use    <- readxl::read_xlsx(here("data", "raw", "energy_use_per_person.xlsx"))
 ```
+
+If you had trouble downloading these files, you can do so at our [GitHub repo](https://github.com//opencasestudies/ocs-bp-co2-emissions/tree/master/data/raw) or more directly by clicking [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/raw/yearly_co2_emissions_1000_tonnes.xlsx), [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/raw/gdp_per_capita_yearly_growth.xlsx), and [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/raw/energy_use_per_person.xlsx).
 
 We will use the `read_csv()` function of the `readr` package to import the data from the `.csv` files.
 
@@ -362,8 +389,11 @@ knitr::include_graphics(here::here("img", "Disasters.png"))
 To do this, we can skip rows using the `skip = 2` argument of the `read_csv()` function. 
 
 ```{r}
-us_disaster <- readr::read_csv(here("data","disasters.csv"), skip = 2)
+us_disaster <- readr::read_csv(here("data", "raw", "disasters.csv"), skip = 2)
 ```
+
+If you had trouble downloading this file, you can do so at our [GitHub repo](https://github.com//opencasestudies/ocs-bp-co2-emissions/tree/master/data/raw) or more directly by clicking [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/raw/disasters.csv).
+
 
 Now looking at the `data/temperature.csv` file, we see that the first four lines do not have the same number of columns as the subsequent lines. 
 
@@ -386,14 +416,63 @@ A variable that is a factor has a set of particular values called levels (this c
 ***
 
 ```{r}
-us_temperature <- readr::read_csv(here("data", "temperature.csv"), skip = 4, na = "-99")
+us_temperature <- readr::read_csv(here("data", "raw", "temperature.csv"), skip = 4, na = "-99")
 ```
+
+If you had trouble downloading this file, you can do so at our [GitHub repo](https://github.com//opencasestudies/ocs-bp-co2-emissions/tree/master/data/raw) or more directly by clicking [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/raw/temperature.csv).
 
 Great! now we have imported all of the data that we will need.
 
+To allow users to skip import we will save the data as an RDA file:
+
+```{r, eval = FALSE}
+save(CO2_emissions, 
+     gdp_growth, 
+     energy_use, 
+     us_disaster, 
+     us_temperature, 
+     file = here::here("data", "imported", "co2_data_imported.rda"))
+```
 
 # **Data Wrangling**
 *** 
+
+If you have been following along but stopped, we could load our imported data like so:
+```{r}
+load(here::here("data", "imported", "co2_data_imported.rda"))
+```
+
+***
+<details> <summary> If you skipped the data import section click here. </summary>
+
+An RDA file (stands for R data) of the data can be found [here](https://github.com//opencasestudies/ocs-bp-co2-emissions/tree/master/data/imported) or slightly more directly [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/imported/co2_data_imported.rda). Download this file and then place it in your current working directory within a subdirectory called "imported" within a directory called "data" to copy and paste our code. We used an RStudio project and the [`here` package](https://github.com/jennybc/here_here) to navigate to the file more easily. 
+
+```{r}
+load(here::here("data", "imported", "co2_data_imported.rda"))
+```
+
+***
+<details> <summary> Click here to see more about creating new projects in RStudio. </summary>
+
+You can create a project by going to the File menu of RStudio like so:
+
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics(here::here("img", "New_project.png"))
+```
+
+You can also do so by clicking the project button:
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics(here::here("img", "project_button.png"))
+```
+
+See [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) to learn more about using RStudio projects and [here](https://github.com/jennybc/here_here) to learn more about the `here` package.
+
+</details>
+***
+</details>
+***
 
 Next, we take a look at our data that we just imported. 
 We will need to do some data wrangling to allow us to evaluate how CO2 emissions have changed over time and how emissions may relate to energy use, GDP, etc.
@@ -1150,9 +1229,11 @@ Using only data from the US, calculate the first and last year that a value was 
 
 ####
 
-```{r, echo = FALSE, eval = FALSE}
-save(data_long, file = here::here("data", "wrangled_data.rda"))
-readr::write_csv(data_long, path = here::here("data", "wrangled_data.csv"))
+To allow users to skip import and wrangling we will save the data as an RDA file as well as a CSV file as this is often useful to send our data to collaborators. We will save this in a "wrangled" subdirectory of our "data" directory of our working directory.
+
+```{r, eval = FALSE}
+save(data_long, file = here::here("data", "wrangled", "wrangled_data.rda"))
+readr::write_csv(data_long, path = here::here("data","wrangled","wrangled_data.csv"))
 ```
 
 ## **Exercise**
@@ -1174,9 +1255,45 @@ We have created a dataset called `wide_format` that is in "wide" format. Write s
 
 # **Data Visualization**
 *** 
-```{r, echo = FALSE}
-load(here::here("data", "wrangled_data.rda"))
+If you have been following along but stopped, we could load our imported data like so:
+
+```{r}
+load(here::here("data", "wrangled", "wrangled_data.rda"))
 ```
+
+***
+<details> <summary> If you skipped the data wrangling section click here. </summary>
+
+An RDA file (stands for R data) of the data can be found [here](https://github.com//opencasestudies/ocs-bp-co2-emissions/tree/master/data/wrangled) or slightly more directly [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/wrangled/wrangled_data.rda). Download this file and then place it in your current working directory within a subdirectory called "wrangled" within a directory called "data" to copy and paste our code. We used an RStudio project and the [`here` package](https://github.com/jennybc/here_here) to navigate to the file more easily. 
+
+```{r}
+load(here::here("data", "wrangled", "wrangled_data.rda"))
+```
+
+
+***
+<details> <summary> Click here to see more about creating new projects in RStudio. </summary>
+
+
+You can create a project by going to the File menu of RStudio like so:
+
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics(here::here("img", "New_project.png"))
+```
+
+You can also do so by clicking the project button:
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics(here::here("img", "project_button.png"))
+```
+
+See [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) to learn more about using RStudio projects and [here](https://github.com/jennybc/here_here) to learn more about the `here` package.
+
+</details>
+***
+</details>
+***
 
 Now we will create some simple plots to examine the CO2 emissions over time using the `ggplot2` package.
 
@@ -1375,6 +1492,17 @@ To show the plot we simply type the name of the object:
 
 ```{r}
 CO2_world
+```
+
+Now let's say we wanted to save this plot.
+
+We could do so using the using the  `save()` function to save this to a "plot" directory in our working directory as an RDA file and we can use the `png()` function to save a png for collaborators. We need to use `dev.off()` function to close the graphical device that we will use to create the png version of the plot so that we are ready to make another plot like this.
+
+```{r}
+save(CO2_world, file =here::here("plots", "CO2_world.rda"))
+png(here::here("plots", "CO2_world.png"))
+CO2_world
+dev.off()
 ```
 
 One thing that would be nice to know is which countries are contributing the most or the least to CO2 emissions. 
@@ -1711,6 +1839,18 @@ Top10t <- Top10t +
 Top10t
 ```
 
+Now let's say we wanted to save this plot.
+
+We could do so using the using the  `save()` function to save this to a "plot" directory in our working directory as an RDA file and we can use the `png()` function to save a png for collaborators. We need to use `dev.off()` function to close the graphical device that we will use to create the png version of the plot so that we are ready to make another plot like this.
+
+```{r}
+save(Top10t, file =here::here("plots", "Top10t.rda"))
+png(here::here("plots", "Top10t.png"))
+Top10t
+dev.off()
+```
+
+
 We see that Germany had very low emission rates at the end of World War II. 
 We also see that the US has consistently had high emission rates since 1900, but the emission rates in China recently surpassed that of the US. 
 The portions of the plot that are white indicate that there is no emission data for that country.
@@ -1895,6 +2035,14 @@ CO2_temp_US_facet
 Note, we are showing a different `theme` here, namely the `theme_classic()` theme. 
 We can see that there are similar patterns of CO2 emission levels and average annual temperatures.
 
+We will save this plot now like so to our "plots" directory:
+```{r}
+save(CO2_temp_US_facet, file =here::here("plots", "CO2_temp_US_facet.rda"))
+png(here::here("plots", "CO2_temp_US_facet.png"))
+CO2_temp_US_facet
+dev.off()
+```
+
 #### {.recall_code_question_block}
 <b><u> Question Opportunity </u></b>
 
@@ -1913,6 +2061,13 @@ wide_US <-
   filter(Country == "United States", Year >= 1980, Year <= 2014) %>%
   select(-Label) %>%
   pivot_wider(names_from = Indicator, values_from = Value)
+```
+
+Let's save this data as an rda file for future use and as a csv file, as this is often useful for collaborators.
+We will save this in a "wrangled" subdirectory of our "data" directory of our working directory.
+```{r, eval = FALSE}
+save(wide_US, file = here::here("data", "wrangled", "wrangled_US_data.rda"))
+readr::write_csv(wide_US, path = here::here("data","wrangled", "wrangled_US_data.csv"))
 ```
 
 Now we can specify which indicators we want to look at, so now we can specifically look at emissions and temperature.
@@ -1942,11 +2097,20 @@ If we want to look at a linear trend we need to specify the method using the `me
 We can just add this to the plot object that we just created to create a plot with this trend line.
 
 ```{r}
-CO2_temp_US + geom_smooth(method = "lm", se = FALSE)
+CO2_temp_US <- CO2_temp_US + geom_smooth(method = "lm", se = FALSE)
+CO2_temp_US 
 ```
 
 Indeed, it does look like there is a positive, linear trend. 
 
+We will also save this plot:
+
+```{r}
+save(CO2_temp_US, file =here::here("plots", "CO2_temp_US.rda"))
+png(here::here("plots", "CO2_temp_US.png"))
+CO2_temp_US
+dev.off()
+```
 
 #### {.recall_code_question_block}
 <b><u> Question Opportunity </u></b>
@@ -1960,10 +2124,6 @@ Indeed, it does look like there is a positive, linear trend.
 
 Now that we see that there might be a linear relationship between CO2 emissions and temperature, let's learn about some statistical techniques to measure the strength of that relationship. 
 
-```{r, eval = FALSE, echo = FALSE}
-save(wide_US, file = here::here("data", "wrangled_US_data.rda"))
-readr::write_csv(wide_US, path = here::here("data", "wrangled_US_data.csv"))
-```
 
 ## **Exercise**
 ***
@@ -1993,32 +2153,45 @@ We want the plot to:
 
 # **Data Analysis**
 ***
- 
-```{r, echo = FALSE}
-load(here::here("data", "wrangled_US_data.rda"))
 
-my_theme <-
-  theme_linedraw() +
-  theme(axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-       axis.title.x = element_text(size = 12),
-       axis.title.y = element_text(size = 12),
-       plot.caption = element_text(size = 12),
-         plot.title = element_text(size = 16))
-
-CO2_temp_US <-
-  wide_US %>%
-  ggplot(aes(x = Emissions, y = Temperature)) +
-    geom_point() +
-    theme_classic() +
-    theme(axis.text.x = element_text(size = 12, angle = 90),
-          axis.text.y = element_text(size = 12),
-           axis.title = element_text(size = 14),
-           plot.title = element_text(size = 16)) +
-    labs(title = "US Emissions and Temperature (1980-2014)",
-         x = "Emissions (Metric Tonnes)",
-         y = "Temperature (Fahrenheit)")
+If you are following along and stopped you could load the data you will need like so:
+```{r}
+load(here::here("data", "wrangled", "wrangled_US_data.rda"))
 ```
+
+***
+<details> <summary> If you skipped the previous sections click here. </summary>
+
+An RDA file (stands for R data) of the data (called `wrangled_US_data.rda`) can be found [here](https://github.com//opencasestudies/ocs-bp-co2-emissions/tree/master/data/wrangled) or slightly more directly [here](https://raw.githubusercontent.com/opencasestudies/ocs-bp-co2-emissions/master/data/wrangled/wrangled_US_data.rda). Download this file and then place it in your current working directory within a subdirectory called "wrangled" within a subdirectory called "data" to copy and paste our code. We used an RStudio project and the [`here` package](https://github.com/jennybc/here_here) to navigate to the file more easily.
+
+```{r}
+load(here::here("data", "wrangled", "wrangled_US_data.rda"))
+```
+***
+
+<details> <summary> Click here to see more about creating new projects in RStudio. </summary>
+
+You can create a project by going to the File menu of RStudio like so:
+
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics(here::here("img", "New_project.png"))
+```
+
+You can also do so by clicking the project button:
+
+```{r, echo = FALSE, out.width="60%"}
+knitr::include_graphics(here::here("img", "project_button.png"))
+```
+
+See [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) to learn more about using RStudio projects and [here](https://github.com/jennybc/here_here) to learn more about the `here` package.
+
+</details>
+***
+</details>
+
+***
+
 
 
 In this section, we are going to introduce some ways to better understand how two variables move together. 
@@ -2202,17 +2375,22 @@ wide_US %>%
 **Note**: In the plot above, we use the scale of the original variables (CO2 emission and temperature), but the formula above implies that standardization of the variables (i.e. subtracting the mean and dividing by the standard deviation) allows the regression line to have an intercept of 0 and slope equal to $\rho$. A similar plot in standardized units is given below.  
 
 ```{r} 
-CO2_temp_US<-wide_US %>%
+CO2_temp_US_sclaed <- wide_US %>%
   ggplot(aes(x = scale(Emissions), y = scale(Temperature))) +
     geom_point() +
     geom_smooth(method = "lm", se = FALSE) +
-  my_theme +
+  theme_linedraw() +
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+       axis.title.x = element_text(size = 14),
+       axis.title.y = element_text(size = 14),
+       plot.caption = element_text(size = 12),
+         plot.title = element_text(size = 16))
   labs(title = "US" ~ CO[2]~ "Emissions and Temperature (1980-2014)",
          y = "Scaled Temperature (Fahrenheit)",
-         x = "Scaled Emissions (Metric Tonnes)") +
-  theme(axis.title.x = element_text(size =14),
-        axis.title.y = element_text(size =14))
-CO2_temp_US
+         x = "Scaled Emissions (Metric Tonnes)")
+  
+CO2_temp_US_sclaed
 ```
 
 Notice that we also use the `geom_smooth(method = "lm")` function that we previously used. Again, this adds a line corresponding to the slope and intercept from the `lm()` function from the `stats` R package. 
@@ -2292,8 +2470,15 @@ We will use the `plot_layout()` function of the `patchwork` R package. The `patc
 
 We will also save the figure using the `grDevices` `png()` function. We can specify the name of our plot file and where we want it to be saved using the `here()` function of the `here` package. In this case in the `img` subdirectory of the directory containing our .Rproj file. We can also specify the size of the plot and the resolution using the `res` argument.  The `grDevices` `dev.off()` function is necessary to close the graphics device.
 
+This will include a few plots that we made previously in other sections. We saved these in the "plots" directory and will load these now for users who stopped and restarted or started at the data analysis section.
 
 ```{r}
+load(here::here("plots", "CO2_world.rda"))
+load(here::here("plots", "Top10t.rda"))
+load(here::here("plots", "CO2_temp_US_facet.rda"))
+```
+
+```{r, eval = FALSE}
 png(here::here("img", "mainplot.png"), units = "in", width = 12, height = 10, res = 300)
 (CO2_world | Top10t) / (CO2_temp_US_facet | CO2_temp_US) +
   plot_layout(widths = c(1, 2),
