@@ -30,6 +30,28 @@ output:
 <!-- Open all links in new tab-->  
 <base target="_blank"/> 
 
+<html lang="en-US">
+<body>
+
+
+
+<p>Translate this page:</p>
+
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<p>You can translate the content of this page by selecting a language in the select box.</p>
+
+</body>
+</html>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(include = TRUE, comment = NA, echo = TRUE,
                       message = FALSE, warning = FALSE, cache = FALSE,
@@ -200,23 +222,23 @@ library(patchwork)
 
 <u>**Packages used in this case study:** </u>
 
-
- Package   | Use in this case study                                                                         
+ Package   | Use in this case study                                                                        
 ---------- |-------------
-[here](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data
-[readxl](https://readxl.tidyverse.org/){target="_blank"}  | to import the Excel file data
-[readr](https://readr.tidyverse.org/){target="_blank"}  | to import the csv file data
-[dplyr](https://dplyr.tidyverse.org/){target="_blank"}  |  to view and wrangle the data, by modifying variables, renaming variables, selecting variables, creating variables, and arranging values within a variable   
-[magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html){target="_blank"}  |  to use and reassign data objects using the `%<>%`pipe operator
-[stringr](https://stringr.tidyverse.org/){target="_blank"}  | to select only the first 4 characters of date data
-[purrr](https://purrr.tidyverse.org/){target="_blank"}  | to apply a function on a list of tibbles (tibbles are the tidyverse version of a data frame)  
-[tidyr](https://tidyr.tidyverse.org/){target="_blank"}  | to drop rows with `NA` values from a tibble
-[forcats](https://forcats.tidyverse.org/){target="_blank"}  | to reorder the levels of a factor
-[ggplot2](https://ggplot2.tidyverse.org/){target="_blank"} | to make visualizations
-[directlabels](http://directlabels.r-forge.r-project.org/docs/index.html){target="_blank"} | to add labels to plots easily
-[ggrepel](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html){target="_blank"} | to add labels that don't overlap to plots
-[broom](https://www.tidyverse.org/blog/2018/07/broom-0-5-0/) | to make the output form statistical tests easier to work with
-[patchwork](https://github.com/thomasp85/patchwork){target="_blank"}  | to combine plots
+[`here`](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data
+[`readxl`](https://readxl.tidyverse.org/){target="_blank"}  | to import the excel file data
+[`readr`](https://readr.tidyverse.org/){target="_blank"}  | to import the csv file data
+[`dplyr`](https://dplyr.tidyverse.org/){target="_blank"}  |  o view and wrangle the data, by modifying variables, renaming variables, selecting variables, creating variables, and arranging values within a variable   
+[`magrittr`](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html){target="_blank"}  |  to use and reassign data objects using the `%<>%`pipe operator
+[`stringr`](https://stringr.tidyverse.org/){target="_blank"}  | to select only the first 4 characters of date data
+[`purrr`](https://purrr.tidyverse.org/){target="_blank"}  | to apply a function on a list of tibbles (tibbles are the tidyverse version of a data frame)  
+[`tidyr`](https://tidyr.tidyverse.org/){target="_blank"}  | to drop rows with `NA` values from a tibble
+[`forcats`](https://forcats.tidyverse.org/){target="_blank"}  | to reorder the levels of a factor
+[`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"} | to make visualizations
+[`directlabels`](http://directlabels.r-forge.r-project.org/docs/index.html){target="_blank"} | to add labels to plots easily
+[`ggrepel`](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html){target="_blank"} | to add labels that don't overlap to plots
+[`broom`](https://www.tidyverse.org/blog/2018/07/broom-0-5-0/) | to make the output form statistical tests easier to work with
+[`patchwork`](https://github.com/thomasp85/patchwork){target="_blank"}  | to combine plots
+
 The first time we use a function, we will use the `::` to indicate which package we are using. Unless we have overlapping function names, this is not necessary, but we will include it here to be informative about where the functions we will use come from.
 
 
@@ -2537,20 +2559,20 @@ Ask students to plot CO2 emissions and other variables (e.g. energy use) on a sc
 
  Package   | Use in this case study                                                                        
 ---------- |-------------
-[here](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data
-[readxl](https://readxl.tidyverse.org/){target="_blank"}  | to import the excel file data
-[readr](https://readr.tidyverse.org/){target="_blank"}  | to import the csv file data
-[dplyr](https://dplyr.tidyverse.org/){target="_blank"}  |  o view and wrangle the data, by modifying variables, renaming variables, selecting variables, creating variables, and arranging values within a variable   
-[magrittr](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html){target="_blank"}  |  to use and reassign data objects using the `%<>%`pipe operator
-[stringr](https://stringr.tidyverse.org/){target="_blank"}  | to select only the first 4 characters of date data
-[purrr](https://purrr.tidyverse.org/){target="_blank"}  | to apply a function on a list of tibbles (tibbles are the tidyverse version of a data frame)  
-[tidyr](https://tidyr.tidyverse.org/){target="_blank"}  | to drop rows with `NA` values from a tibble
-[forcats](https://forcats.tidyverse.org/){target="_blank"}  | to reorder the levels of a factor
-[ggplot2](https://ggplot2.tidyverse.org/){target="_blank"} | to make visualizations
-[directlabels](http://directlabels.r-forge.r-project.org/docs/index.html){target="_blank"} | to add labels to plots easily
-[ggrepel](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html){target="_blank"} | to add labels that don't overlap to plots
-[broom](https://www.tidyverse.org/blog/2018/07/broom-0-5-0/) | to make the output form statistical tests easier to work with
-[patchwork](https://github.com/thomasp85/patchwork){target="_blank"}  | to combine plots
+[`here`](https://github.com/jennybc/here_here){target="_blank"}       | to easily load and save data
+[`readxl`](https://readxl.tidyverse.org/){target="_blank"}  | to import the excel file data
+[`readr`](https://readr.tidyverse.org/){target="_blank"}  | to import the csv file data
+[`dplyr`](https://dplyr.tidyverse.org/){target="_blank"}  |  o view and wrangle the data, by modifying variables, renaming variables, selecting variables, creating variables, and arranging values within a variable   
+[`magrittr`](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html){target="_blank"}  |  to use and reassign data objects using the `%<>%`pipe operator
+[`stringr`](https://stringr.tidyverse.org/){target="_blank"}  | to select only the first 4 characters of date data
+[`purrr`](https://purrr.tidyverse.org/){target="_blank"}  | to apply a function on a list of tibbles (tibbles are the tidyverse version of a data frame)  
+[`tidyr`](https://tidyr.tidyverse.org/){target="_blank"}  | to drop rows with `NA` values from a tibble
+[`forcats`](https://forcats.tidyverse.org/){target="_blank"}  | to reorder the levels of a factor
+[`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"} | to make visualizations
+[`directlabels`](http://directlabels.r-forge.r-project.org/docs/index.html){target="_blank"} | to add labels to plots easily
+[`ggrepel`](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html){target="_blank"} | to add labels that don't overlap to plots
+[`broom`](https://www.tidyverse.org/blog/2018/07/broom-0-5-0/) | to make the output form statistical tests easier to work with
+[`patchwork`](https://github.com/thomasp85/patchwork){target="_blank"}  | to combine plots
 
 
 ## **Session Info**
