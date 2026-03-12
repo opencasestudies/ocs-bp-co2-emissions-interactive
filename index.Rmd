@@ -20,7 +20,7 @@ output:
 
 <style>
 #TOC {
-  background: url("https://opencasestudies.github.io/img/icon-bahi.png");
+  background: url("https://opencasestudies.github.io/img/interactive_logo.png");
   background-size: contain;
   padding-top: 240px !important;
   background-repeat: no-repeat;
